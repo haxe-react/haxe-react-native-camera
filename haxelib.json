@@ -1,0 +1,16 @@
+{
+  "name": "react-native-camera",
+  "license": "MIT",
+  "tags": [
+    "react-native-camera",
+    "react-native",
+    "extern"
+  ],
+  "classPath": "src",
+  "contributors": [
+    "kevinresol"
+  ],
+  "releasenote": "initial release",
+  "version": "0.0.0",
+  "dependencies": {}
+}
