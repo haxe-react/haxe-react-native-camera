@@ -44,6 +44,8 @@ extern class Camera extends ReactComponentOfProps<{
 		duration:Int,
 		size:Int,
 	}>;
+	
+	function stopCapture():js.Promise<Dynamic>;
 }
 
 extern abstract Aspect(Dynamic) {}
