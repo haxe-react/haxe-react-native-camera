@@ -7,6 +7,7 @@ import react.native.component.props.*;
 extern class Camera extends ReactComponentOfProps<{
 	> ViewProps,
 	?aspect:Aspect,
+	?type:CaptureType,
 	?captureMode:CaptureMode,
 	?captureTarget:CaptureTarget,
 	?captureQuality:CaptureQuality,
@@ -52,6 +53,10 @@ extern abstract Aspect(Dynamic) {}
 extern abstract CaptureTarget(Dynamic) {}
 extern abstract CaptureMode(Dynamic) {}
 extern abstract CaptureQuality(Dynamic) {}
+@:enum abstract CaptureType(String) {
+	var Front = 'front';
+	var Back = 'back';
+}
 
 @:jsRequire('react-native-camera', 'default.constants.BarCodeType')
 @:enum extern abstract BarCodeType(String) to String {
