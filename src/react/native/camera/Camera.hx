@@ -12,8 +12,8 @@ extern class Camera extends ReactComponentOfProps<{
 	?captureTarget:CaptureTarget,
 	?captureQuality:CaptureQuality,
 	?onBarCodeRead:{type:String, data:String}->Void,
-	?barCodeTypes:Array<String>
-	
+	?barCodeTypes:Array<String>,
+	?cropToPreview:Bool,
 }> {
 	static var constants:{
 		Aspect:{
