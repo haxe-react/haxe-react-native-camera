@@ -16,7 +16,13 @@ extern class RNCamera extends ReactComponentOfProps<{
 	?zoom:Float,
 	
 	?onBarCodeRead:{type:String, data:String}->Void,
-	?barCodeTypes:Array<String>
+	?barCodeTypes:Array<String>,
+	?onCameraReady:Void->Void,
+
+	#if android
+	?androidCameraPermissionOptions:{title:String, message:String, buttonPositive:String, buttonNegative:String},
+	?androidRecordAudioPermissionOptions:{title:String, message:String, buttonPositive:String, buttonNegative:String},
+	#end
 	
 }> {
 	function takePictureAsync(?options:TakePictureOptions):js.Promise<{
@@ -24,7 +30,7 @@ extern class RNCamera extends ReactComponentOfProps<{
 		width:Int,
 		height:Int,
 		?base64:String,
-		?exif:Dynamic,
+		?exif:Dynamic
 	}>;
 	
 	function recordAsync(?options:RecordOptions):js.Promise<{
@@ -32,7 +38,12 @@ extern class RNCamera extends ReactComponentOfProps<{
 		?codec:VideoCodec,
 	}>;
 	
+	
+	function refreshAuthorizationStatus():js.Promise<Void>;
+	function resumePreview():Void;
+	function pausePreview():Void;
 	function stopRecording():Void;
+	
 }
 
 typedef TakePictureOptions = {
@@ -43,6 +54,7 @@ typedef TakePictureOptions = {
 	?exif:Bool,
 	?fixOrientation:Bool,
 	?forceUpOrientation:Bool,
+	?skipProcessing:Bool
 }
 
 typedef RecordOptions = {
