@@ -16,7 +16,10 @@ extern class RNCamera extends ReactComponentOfProps<{
 	?zoom:Float,
 	
 	?onBarCodeRead:{type:String, data:String}->Void,
-	?barCodeTypes:Array<String>
+	?barCodeTypes:Array<String>,
+	?onGoogleVisionBarcodesDetected:{target:Int, barcodes:Array<GoogleBarCode>, type:String}->Void,
+	?googleVisionBarcodeType:GoogleBarCodeType,
+	
 	
 }> {
 	function takePictureAsync(?options:TakePictureOptions):js.Promise<{
@@ -33,6 +36,19 @@ extern class RNCamera extends ReactComponentOfProps<{
 	}>;
 	
 	function stopRecording():Void;
+}
+
+typedef GoogleBarCode = {
+	bounds:{
+		size:{height:Float, width:Float},
+		origin:{x:Float, y:Float},
+	},
+	data:String,
+	dataRaw:String,
+	format:String,
+	title:String,
+	type:String,
+	url:String,
 }
 
 typedef TakePictureOptions = {
@@ -117,3 +133,22 @@ typedef RecordOptions = {
 	@:native('itf14') var Itf14;
 	@:native('datamatrix') var Datamatrix;
 }
+
+@:jsRequire('react-native-camera', 'RNCamera.Constants.GoogleVisionBarcodeDetection.BarcodeType')
+@:enum extern abstract GoogleBarCodeType(Dynamic) {
+	var CODE_128;
+	var CODE_39;
+	var CODE_93;
+	var CODABAR;
+	var EAN_13;
+	var EAN_8;
+	var ITF;
+	var UPC_A;
+	var UPC_E;
+	var QR_CODE;
+	var PDF417;
+	var AZTEC;
+	var DATA_MATRIX;
+	var ALL;
+}
+
